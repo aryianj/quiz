@@ -10,7 +10,9 @@ function App() {
     {statement: "You can do better than that!"},
     {statement: "Mid..."},
     {statement: "Okay, I guess you know me kinda..."},
+    {statement: "You're getting there..."},
     {statement: "You passed! I love you!"},
+    {statement: "Let's get married."},
   ];
 
   const questions = [
@@ -68,8 +70,8 @@ function App() {
       <div className="p-3 bg-gradient-to-b from-gray-900 to-gray-500 w-screen h-screen">
         <div className="h-full w-full flex flex-col bg-gray-100 rounded-lg p-6 shadow-lg">
           <p>Score: {count}/6</p>
-          <div className='w-full h-full flex flex-col justify-center items-center'>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to The Quiz</h1>
+          <div className='w-full h-full flex flex-col justify-center items-center text-center'>
+            <h1 className="sm:text-3xl text-2xl font-bold text-gray-900 mb-2">Welcome to The Quiz</h1>
             <p className="mb-2 text-gray-800">Try to pass the quiz, if you dare.</p>
             <button className="bg-blue-900 text-white px-4 py-2 rounded-full hover:bg-blue-950 transition" onClick={() => setGameState(gameState + 1)}>
               Continue
@@ -82,11 +84,11 @@ function App() {
       <div className="p-3 bg-gradient-to-b from-gray-900 to-gray-500 w-screen h-screen">
         <div className="h-full w-full flex flex-col bg-gray-100 rounded-lg p-6 shadow-lg">
           <p>Score: {count}/6</p>
-          <div className='w-full h-full flex flex-col justify-center items-center'>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{questions[gameState - 1].question}</h1>
-              <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className='w-full h-full flex flex-col justify-center items-center text-center'>
+            <h1 className="sm:text-3xl text-2xl font-bold text-gray-900 mb-2">{questions[gameState - 1].question}</h1>
+              <div className="grid sm:grid-cols-3 grid-cols-2 gap-4 mb-4">
                 {questions[gameState - 1].options.map((q, index) => (
-                  <button key={index} className="bg-blue-900 text-white px-4 py-2 rounded-full hover:bg-blue-950 transition" onClick={() => {setGameState(gameState + 1); if (q.isCorrect) {setCount(count + 1)}}}>
+                  <button key={index} className="bg-blue-900 text-white sm:px-4 px-2 py-2 rounded-full hover:bg-blue-950 transition sm:text-base text-xs" onClick={() => {setGameState(gameState + 1); if (q.isCorrect) {setCount(count + 1)}}}>
                     {q.option}
                   </button>
                 ))}
@@ -98,10 +100,11 @@ function App() {
       {gameState === 7 && (
       <div className="p-3 bg-gradient-to-b from-gray-900 to-gray-500 w-screen h-screen">
         <div className="h-full w-full flex flex-col bg-gray-100 rounded-lg p-6 shadow-lg">
-          <div className='w-full h-full flex flex-col justify-center items-center'>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Final Score:</h1>
-            <p className="text-2xl font-semibold text-gray-800">{statements[count].statement}</p>
-            <p className="text-2xl font-semibold text-gray-800">You scored <span className="text-blue-600">{count}</span> out of 6!</p>
+          <div className='w-full h-full flex flex-col justify-center items-center text-center'>
+            <h1 className="sm:text-3xl text-2xl font-bold text-gray-900 mb-2">Final Score:</h1>
+            {/* Clamp the index just in case to avoid out-of-bounds */}
+            <p className="sm:text-2xl text-xl font-semibold text-gray-800">{statements[Math.min(count, statements.length - 1)].statement}</p>
+            <p className="sm:text-2xl text-xl font-semibold text-gray-800">You scored <span className="text-blue-600">{count}</span> out of 6!</p>
              <button className="bg-blue-900 text-white px-4 py-2 mt-2 rounded-full hover:bg-blue-950 transition" onClick={() => {setGameState(0); setCount(0)}}>
               Restart
             </button>
