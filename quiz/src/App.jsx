@@ -102,7 +102,7 @@ function App() {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Final Score:</h1>
             <p className="text-2xl font-semibold text-gray-800">{statements[count].statement}</p>
             <p className="text-2xl font-semibold text-gray-800">You scored <span className="text-blue-600">{count}</span> out of 6!</p>
-             <button className="bg-blue-900 text-white px-4 py-2 rounded-full hover:bg-blue-950 transition" onClick={() => {setGameState(0); setCount(0)}}>
+             <button className="bg-blue-900 text-white px-4 py-2 mt-2 rounded-full hover:bg-blue-950 transition" onClick={() => {setGameState(0); setCount(0)}}>
               Restart
             </button>
           </div>
